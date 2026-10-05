@@ -4,349 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinKit Global — Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: #f1f5f9; color: #0f172a; display: flex; min-height: 100vh; }
-        
-        /* Sidebar */
-        aside { width: 260px; background: #0f172a; color: white; padding: 25px 20px; display: flex; flex-direction: column; justify-content: space-between; }
-        .brand { font-size: 20px; font-weight: 700; color: #38bdf8; margin-bottom: 40px; letter-spacing: 0.5px; }
-        .brand span { color: #ffffff; }
-        .nav-menu { list-style: none; }
-        .nav-item { padding: 12px 16px; border-radius: 8px; margin-bottom: 8px; color: #94a3b8; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
-        .nav-item.active, .nav-item:hover { background: #1e293b; color: #38bdf8; }
-        .admin-profile { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 13px; color: #64748b; }
-        .admin-profile strong { color: #f8fafc; display: block; font-size: 14px; }
-
-        /* Main Content */
-        main { flex: 1; padding: 35px 40px; overflow-y: auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .header h1 { font-size: 26px; font-weight: 700; color: #0f172a; }
-        .header p { color: #64748b; font-size: 14px; }
-
-        /* Stats Grid */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: white; padding: 22px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .stat-card .label { font-size: 13px; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-card .value { font-size: 28px; font-weight: 700; color: #0f172a; margin-top: 8px; }
-        .stat-card .badge-inc { font-size: 12px; color: #16a34a; font-weight: 600; margin-top: 4px; display: inline-block; }
-
-        /* Charts & Main Section */
-        .analytics-row { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .chart-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; }
-        .chart-box h3 { font-size: 16px; margin-bottom: 20px; color: #0f172a; }
-
-        /* Table Section */
-        .table-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; }
-        .table-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; flex-wrap: wrap; }
-        .search-box { padding: 10px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 280px; }
-        .filter-select { padding: 10px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; background: white; }
-        .btn-export { background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
-
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th { background: #f8fafc; padding: 14px 16px; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; }
-        td { padding: 16px; font-size: 14px; border-bottom: 1px solid #f1f5f9; color: #334155; }
-        tr:hover { background: #f8fafc; }
-
-        /* Status Badges */
-        .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-        .status-New { background: #dbeafe; color: #1e40af; }
-        .status-In-Progress { background: #fef3c7; color: #92400e; }
-        .status-Closed { background: #dcfce7; color: #166534; }
-
-        /* Action Buttons */
-        .btn-action { padding: 6px 12px; border-radius: 6px; font-size: 12px; border: 1px solid #cbd5e1; background: white; cursor: pointer; font-weight: 500; }
-        .btn-delete { color: #dc2626; border-color: #fca5a5; }
-
-        /* Modal */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
-        .modal-content { background: white; width: 500px; padding: 30px; border-radius: 12px; max-width: 90%; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .close-btn { font-size: 20px; cursor: pointer; border: none; background: none; }
-    </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-['Inter'] antialiased min-h-screen">
 
-    <aside>
-        <div>
-            <div class="brand">FINKIT <span>GLOBAL</span></div>
-            <ul class="nav-menu">
-                <li class="nav-item active">📊 Dashboard & Leads</li>
-                <li class="nav-item" onclick="alert('FinKit BrokerOS Admin module ready')">💼 BrokerOS Leads</li>
-                <li class="nav-item" onclick="alert('Analytics report generated')">📈 Analytics</li>
-                <li class="nav-item" onclick="window.location.href='/'">🌐 Live Website</li>
-            </ul>
-        </div>
-        <div class="admin-profile">
-            <strong>Arshad Ali</strong>
-            Founder & CEO
-        </div>
-    </aside>
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-slate-900 border-r border-slate-800 min-h-screen p-6 hidden md:block">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-slate-950">FG</div>
+                <span class="font-bold text-lg text-white">FINKIT GLOBAL</span>
+            </div>
+            <nav class="space-y-2">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-sky-500/10 text-sky-400 font-semibold rounded-xl border border-sky-500/20">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard & Leads
+                </a>
+                <a href="/" target="_blank" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-xl transition-all">
+                    <i class="fa-solid fa-globe"></i> View Live Website
+                </a>
+            </nav>
+        </aside>
 
-    <main>
-        <div class="header">
-            <div>
-                <h1>Inquiries & Lead Management</h1>
-                <p>Overview of incoming financial technology inquiries & enterprise leads.</p>
-            </div>
-            <div>
-                <a href="/" target="_blank" style="text-decoration:none; color:#2563eb; font-weight:600; font-size:14px;">+ View Public Website</a>
-            </div>
-        </div>
-
-        <!-- KPIs -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="label">Total Inquiries</div>
-                <div class="value" id="stat-total">0</div>
-                <span class="badge-inc">Live Sync Active</span>
-            </div>
-            <div class="stat-card">
-                <div class="label">New Leads</div>
-                <div class="value" id="stat-new" style="color:#2563eb;">0</div>
-                <span class="badge-inc">Requires Action</span>
-            </div>
-            <div class="stat-card">
-                <div class="label">In Progress</div>
-                <div class="value" id="stat-progress" style="color:#d97706;">0</div>
-                <span class="badge-inc">Under Review</span>
-            </div>
-            <div class="stat-card">
-                <div class="label">Closed / Converted</div>
-                <div class="value" id="stat-closed" style="color:#16a34a;">0</div>
-                <span class="badge-inc">Completed</span>
-            </div>
-        </div>
-
-        <!-- Analytics Charts -->
-        <div class="analytics-row">
-            <div class="chart-box">
-                <h3>Inquiry Growth Trend</h3>
-                <canvas id="trendChart" height="120"></canvas>
-            </div>
-            <div class="chart-box">
-                <h3>Lead Distribution</h3>
-                <canvas id="statusChart" height="180"></canvas>
-            </div>
-        </div>
-
-        <!-- Leads Table -->
-        <div class="table-card">
-            <div class="table-controls">
-                <input type="text" id="searchInput" class="search-box" placeholder="Search by name, email or message..." onkeyup="filterTable()">
-                <select id="statusFilter" class="filter-select" onchange="filterTable()">
-                    <option value="ALL">All Status</option>
-                    <option value="New">New</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Closed">Closed</option>
-                </select>
-                <button class="btn-export" onclick="exportToCSV()">📥 Export CSV</button>
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">Inquiries & Lead Management</h1>
+                    <p class="text-slate-400 text-sm mt-1">Real-time incoming financial technology leads.</p>
+                </div>
+                <a href="/" target="_blank" class="text-sky-400 text-sm font-semibold hover:underline">
+                    + View Public Website
+                </a>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date & Time</th>
-                        <th>Client Name</th>
-                        <th>Email</th>
-                        <th>Message Preview</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="leadsTableBody">
-                    <!-- Dynamic Rows -->
-                </tbody>
-            </table>
-        </div>
-    </main>
-
-    <!-- Lead Detail Modal -->
-    <div class="modal" id="leadModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalName">Lead Details</h3>
-                <button class="close-btn" onclick="closeModal()">✕</button>
-            </div>
-            <div style="font-size:14px; line-height:1.6; color:#334155;">
-                <p><strong>Email:</strong> <span id="modalEmail"></span></p>
-                <p><strong>Date:</strong> <span id="modalDate"></span></p>
-                <p style="margin-top:15px;"><strong>Message / Requirement:</strong></p>
-                <div id="modalMessage" style="background:#f8fafc; padding:15px; border-radius:8px; border:1px solid #e2e8f0; margin-top:6px;"></div>
-                <div style="margin-top:20px; display:flex; gap:10px;">
-                    <a id="replyMailBtn" href="" class="btn-export" style="text-decoration:none; display:inline-block;">✉️ Reply via Email</a>
+            <!-- Metric Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <p class="text-xs uppercase font-semibold text-slate-400">Total Inquiries</p>
+                    <p class="text-3xl font-extrabold text-white mt-2" id="total-count">0</p>
+                    <span class="text-[10px] text-emerald-400 font-semibold flex items-center gap-1 mt-2"><i class="fa-solid fa-circle text-[6px]"></i> Live Sync Active</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <p class="text-xs uppercase font-semibold text-slate-400">New Leads</p>
+                    <p class="text-3xl font-extrabold text-sky-400 mt-2" id="new-count">0</p>
+                    <span class="text-[10px] text-sky-400 mt-2 block">Requires Action</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <p class="text-xs uppercase font-semibold text-slate-400">In Progress</p>
+                    <p class="text-3xl font-extrabold text-amber-400 mt-2">0</p>
+                    <span class="text-[10px] text-amber-400 mt-2 block">Under Review</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                    <p class="text-xs uppercase font-semibold text-slate-400">Closed / Converted</p>
+                    <p class="text-3xl font-extrabold text-emerald-400 mt-2">0</p>
+                    <span class="text-[10px] text-slate-500 mt-2 block">Completed</span>
                 </div>
             </div>
-        </div>
+
+            <!-- Leads Table -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+                    <h3 class="font-bold text-lg text-white">Recent Received Leads</h3>
+                    <button onclick="fetchLeads()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-lg transition-all">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-950 text-slate-400 text-xs uppercase border-b border-slate-800">
+                            <tr>
+                                <th class="p-4">Time</th>
+                                <th class="p-4">Name</th>
+                                <th class="p-4">Email</th>
+                                <th class="p-4">Message</th>
+                                <th class="p-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-table-body" class="divide-y divide-slate-800 text-slate-300">
+                            <tr>
+                                <td colspan="5" class="p-8 text-center text-slate-500">
+                                    No leads received yet. Submit a form on main website to test.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
-        let allLeads = [];
-        let trendChartObj = null;
-        let statusChartObj = null;
-
         async function fetchLeads() {
             try {
                 const res = await fetch('/api/leads');
-                allLeads = await res.json();
-                renderDashboard();
+                const data = await res.json();
+                
+                document.getElementById('total-count').innerText = data.length;
+                document.getElementById('new-count').innerText = data.length;
+
+                const tbody = document.getElementById('leads-table-body');
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="5" class="p-8 text-center text-slate-500">
+                                No leads received yet. Submit a form on main website to test.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = data.map(lead => `
+                    <tr class="hover:bg-slate-800/50 transition-colors">
+                        <td class="p-4 text-xs text-slate-400 whitespace-nowrap">${lead.date}</td>
+                        <td class="p-4 font-semibold text-white">${lead.name}</td>
+                        <td class="p-4 text-sky-400">${lead.email}</td>
+                        <td class="p-4 text-slate-300 max-w-xs truncate">${lead.message}</td>
+                        <td class="p-4">
+                            <span class="px-2.5 py-1 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-full text-xs font-semibold">
+                                ${lead.status || 'New'}
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
             } catch (err) {
-                console.error("Failed to load leads", err);
+                console.error('Failed to fetch leads:', err);
             }
         }
 
-        function renderDashboard() {
-            // Update Stats
-            document.getElementById('stat-total').innerText = allLeads.length;
-            document.getElementById('stat-new').innerText = allLeads.filter(l => l.status === 'New').length;
-            document.getElementById('stat-progress').innerText = allLeads.filter(l => l.status === 'In Progress').length;
-            document.getElementById('stat-closed').innerText = allLeads.filter(l => l.status === 'Closed').length;
-
-            renderTable(allLeads);
-            renderCharts();
-        }
-
-        function renderTable(leads) {
-            const tbody = document.getElementById('leadsTableBody');
-            tbody.innerHTML = '';
-
-            if (leads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8; padding:30px;">No inquiries found.</td></tr>`;
-                return;
-            }
-
-            leads.forEach(lead => {
-                const formattedDate = new Date(lead.date).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
-                const statusClass = lead.status === 'In Progress' ? 'status-In-Progress' : `status-${lead.status}`;
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-size:12px; color:#64748b;">${formattedDate}</td>
-                    <td style="font-weight:600;">${escapeHtml(lead.name)}</td>
-                    <td><a href="mailto:${escapeHtml(lead.email)}" style="color:#2563eb; text-decoration:none;">${escapeHtml(lead.email)}</a></td>
-                    <td style="max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(lead.message)}</td>
-                    <td>
-                        <select onchange="updateStatus('${lead.id}', this.value)" class="status-badge ${statusClass}" style="border:none; cursor:pointer;">
-                            <option value="New" ${lead.status === 'New' ? 'selected' : ''}>New</option>
-                            <option value="In Progress" ${lead.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
-                            <option value="Closed" ${lead.status === 'Closed' ? 'selected' : ''}>Closed</option>
-                        </select>
-                    </td>
-                    <td>
-                        <button class="btn-action" onclick='viewLead(${JSON.stringify(lead)})'>View</button>
-                        <button class="btn-action btn-delete" onclick="deleteLead('${lead.id}')">Delete</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function filterTable() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const filter = document.getElementById('statusFilter').value;
-
-            const filtered = allLeads.filter(lead => {
-                const matchesSearch = lead.name.toLowerCase().includes(search) || 
-                                      lead.email.toLowerCase().includes(search) || 
-                                      lead.message.toLowerCase().includes(search);
-                const matchesStatus = filter === 'ALL' || lead.status === filter;
-                return matchesSearch && matchesStatus;
-            });
-
-            renderTable(filtered);
-        }
-
-        async function updateStatus(id, newStatus) {
-            await fetch('/api/leads/status', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id, status: newStatus })
-            });
-            fetchLeads();
-        }
-
-        async function deleteLead(id) {
-            if (confirm('Are you sure you want to delete this lead?')) {
-                await fetch(`/api/leads/${id}`, { method: 'DELETE' });
-                fetchLeads();
-            }
-        }
-
-        function viewLead(lead) {
-            document.getElementById('modalName').innerText = lead.name;
-            document.getElementById('modalEmail').innerText = lead.email;
-            document.getElementById('modalDate').innerText = new Date(lead.date).toLocaleString();
-            document.getElementById('modalMessage').innerText = lead.message;
-            document.getElementById('replyMailBtn').href = `mailto:${lead.email}?subject=Re: Finkit Global Inquiry`;
-            document.getElementById('leadModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('leadModal').style.display = 'none';
-        }
-
-        function exportToCSV() {
-            let csv = 'Date,Name,Email,Status,Message\n';
-            allLeads.forEach(l => {
-                csv += `"${new Date(l.date).toLocaleString()}","${l.name}","${l.email}","${l.status}","${l.message.replace(/"/g, '""')}"\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.setAttribute('href', url);
-            a.setAttribute('download', `FinKit_Leads_${new Date().toISOString().slice(0,10)}.csv`);
-            a.click();
-        }
-
-        function renderCharts() {
-            if (trendChartObj) trendChartObj.destroy();
-            if (statusChartObj) statusChartObj.destroy();
-
-            // Trend Chart
-            const ctx1 = document.getElementById('trendChart').getContext('2d');
-            trendChartObj = new Chart(ctx1, {
-                type: 'line',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    datasets: [{
-                        label: 'Inquiries Received',
-                        data: [2, 5, 3, 8, 4, 6, allLeads.length],
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: { responsive: true, plugins: { legend: { display: false } } }
-            });
-
-            // Status Pie Chart
-            const ctx2 = document.getElementById('statusChart').getContext('2d');
-            statusChartObj = new Chart(ctx2, {
-                type: 'doughnut',
-                data: {
-                    labels: ['New', 'In Progress', 'Closed'],
-                    datasets: [{
-                        data: [
-                            allLeads.filter(l => l.status === 'New').length,
-                            allLeads.filter(l => l.status === 'In Progress').length,
-                            allLeads.filter(l => l.status === 'Closed').length
-                        ],
-                        backgroundColor: ['#2563eb', '#d97706', '#16a34a']
-                    }]
-                },
-                options: { responsive: true }
-            });
-        }
-
-        function escapeHtml(str) {
-            return str ? str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
-        }
-
-        // Initialize
+        // Fetch on load & auto-refresh every 4 seconds
         fetchLeads();
+        setInterval(fetchLeads, 4000);
     </script>
+
 </body>
 </html>
