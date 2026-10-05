@@ -3,456 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinKit Global | Technology That Powers Finance</title>
+    <title>FinKit Global — Institutional Financial Technology</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-        body {
-            color: #1e293b;
-            background-color: #f8fafc;
-            line-height: 1.6;
-        }
-        /* Navbar */
-        nav {
-            background: #0f172a;
-            color: #fff;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        nav .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: #38bdf8;
-            letter-spacing: 0.5px;
-        }
-        nav .logo span { color: #ffffff; }
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 22px;
-        }
-        nav ul a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        nav ul a:hover { color: #38bdf8; }
-        nav .btn-nav {
-            background: #2563eb;
-            color: white;
-            padding: 9px 18px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            padding: 100px 8% 80px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #f8fafc;
-            line-height: 1.2;
-        }
-        .hero p {
-            font-size: 18px;
-            color: #cbd5e1;
-            max-width: 700px;
-            margin: 0 auto 35px;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-            padding: 13px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .btn-secondary {
-            border: 1px solid #475569;
-            color: white;
-            padding: 13px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .hero-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .hero-tag {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            color: #38bdf8;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 80px 8%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .section-header h2 {
-            font-size: 32px;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
-        .section-header p {
-            color: #64748b;
-            font-size: 16px;
-        }
-
-        /* Cards Grid */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-        .card h3 { color: #0f172a; font-size: 20px; margin-bottom: 10px; }
-        .card p { color: #64748b; font-size: 14px; margin-bottom: 15px; }
-        .card ul { list-style: none; }
-        .card ul li { color: #334155; font-size: 14px; margin-bottom: 8px; padding-left: 18px; position: relative; }
-        .card ul li::before { content: "•"; color: #2563eb; font-weight: bold; position: absolute; left: 0; }
-
-        /* Approach Box */
-        .approach-box {
-            background: #0f172a;
-            color: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 40px;
-        }
-        .approach-title { font-size: 24px; color: #38bdf8; font-weight: 700; letter-spacing: 2px; margin-bottom: 15px; }
-
-        /* Founder Section */
-        .founder {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 50px;
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .founder-info h3 { font-size: 26px; color: #0f172a; }
-        .founder-info .role { color: #2563eb; font-weight: 600; margin-bottom: 15px; display: block; }
-        .founder-quote {
-            background: #f1f5f9;
-            padding: 20px;
-            border-left: 4px solid #2563eb;
-            font-style: italic;
-            margin-top: 20px;
-            color: #334155;
-        }
-
-        /* Contact Section */
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .contact-info { background: #0f172a; color: white; padding: 40px; border-radius: 12px; }
-        .contact-info h3 { color: #38bdf8; margin-bottom: 20px; font-size: 22px; }
-        .info-item { margin-bottom: 20px; }
-        .info-item label { color: #94a3b8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; display: block; }
-        .info-item p { color: #f8fafc; font-size: 15px; margin-top: 4px; }
-
-        .contact-form { background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; line-height: 1.6; }
+        header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; }
+        .logo { font-size: 22px; font-weight: 700; color: #38bdf8; }
+        .logo span { color: #ffffff; }
+        nav a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 500; }
+        nav a:hover { color: #38bdf8; }
+        .hero { padding: 100px 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 20px; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 18px; color: #94a3b8; margin-bottom: 30px; }
+        .btn { display: inline-block; padding: 12px 28px; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; }
+        .services { padding: 60px 40px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #1e293b; padding: 30px; border-radius: 12px; border: 1px solid #334155; }
+        .card h3 { color: #38bdf8; font-size: 20px; margin-bottom: 12px; }
+        .card p { color: #94a3b8; font-size: 14px; }
+        .contact-section { padding: 80px 40px; background: #0b1120; text-align: center; }
+        .contact-form { max-width: 500px; margin: 30px auto 0; text-align: left; }
         .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; color: #334155; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
-        .btn-submit { width: 100%; background: #2563eb; color: white; padding: 13px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
-
-        /* Footer */
-        footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 30px; font-size: 13px; border-top: 1px solid #1e293b; }
-        .disclaimer { font-size: 12px; color: #64748b; max-width: 900px; margin: 20px auto 0; text-align: center; }
+        .form-group label { display: block; font-size: 14px; color: #cbd5e1; margin-bottom: 6px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: white; font-size: 14px; }
+        .submit-btn { width: 100%; padding: 12px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        footer { padding: 30px 40px; text-align: center; border-top: 1px solid #1e293b; color: #64748b; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <!-- Nav -->
-    <nav>
+    <header>
         <div class="logo">FINKIT <span>GLOBAL</span></div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#founder">Founder</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="#contact" class="btn-nav">Talk to Our Team</a>
-    </nav>
+        <nav>
+            <a href="#services">Solutions</a>
+            <a href="#contact">Get Started</a>
+            <a href="/admin" target="_blank" style="color: #38bdf8;">Admin Login</a>
+        </nav>
+    </header>
 
-    <!-- 1. HERO -->
-    <div class="hero">
-        <h1>Technology That Powers Finance</h1>
-        <p>Finkit Global builds intelligent technology, software and infrastructure for modern financial businesses.</p>
-        <div class="hero-btns">
-            <a href="#solutions" class="btn-primary">Explore Solutions</a>
-            <a href="#contact" class="btn-secondary">Talk to Our Team</a>
-        </div>
-        <div class="hero-tags">
-            <span class="hero-tag">FinTech Technology</span>
-            <span class="hero-tag">Trading Infrastructure</span>
-            <span class="hero-tag">Broker Technology</span>
-            <span class="hero-tag">Risk & Analytics</span>
-            <span class="hero-tag">APIs & Integrations</span>
-            <span class="hero-tag">AI & Automation</span>
-            <span class="hero-tag">Enterprise Software</span>
-        </div>
-    </div>
+    <section class="hero">
+        <h1>Next-Generation Financial Technology Infrastructure</h1>
+        <p>Empowering brokerages, prop firms, and institutional trading desks with turnkey BrokerOS, risk management tools, and high-performance liquidity access.</p>
+        <a href="#contact" class="btn">Schedule Consultation</a>
+    </section>
 
-    <!-- 2. ABOUT US -->
-    <section id="about">
-        <div class="section-header">
-            <h2>Building the Technology Behind Modern Finance</h2>
-            <p>Finkit Global Private Limited is a technology company focused on building scalable software, infrastructure and digital solutions for businesses operating across the financial ecosystem.</p>
+    <section class="services" id="services">
+        <div class="card">
+            <h3>FinKit BrokerOS</h3>
+            <p>End-to-end multi-asset brokerage management platform, trader portal, and integrated client CRM.</p>
         </div>
-        <p style="text-align: center; color: #475569; max-width: 800px; margin: 0 auto 30px;">
-            We combine financial-market expertise, modern software engineering and automation to help businesses build, connect, manage and scale their technology infrastructure.
-        </p>
-        <div class="approach-box">
-            <div class="approach-title">BUILD. CONNECT. MANAGE. SCALE.</div>
-            <p style="color: #cbd5e1;">We believe financial technology should be secure, scalable, intelligent and easy to operate.</p>
+        <div class="card">
+            <h3>Global Banking API</h3>
+            <p>Seamlessly integrate global banking and payment features straight into your applications.</p>
+        </div>
+        <div class="card">
+            <h3>Risk & Compliance</h3>
+            <p>Ensure your operations adhere to international financial regulations and manage risk effortlessly.</p>
         </div>
     </section>
 
-    <!-- 3. OUR SOLUTIONS -->
-    <section id="solutions" style="background: #f1f5f9; max-width: 100%; padding: 80px 8%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div class="section-header">
-                <h2>Our Solutions</h2>
+    <section class="contact-section" id="contact">
+        <h2>Connect With Our Institutional Desk</h2>
+        <p style="color: #94a3b8; margin-top: 8px;">Fill out the form below to receive a call from our technical team.</p>
+        
+        <form class="contact-form" action="/send-email" method="POST">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" required placeholder="John Doe">
             </div>
-            <div class="grid-2">
-                <div class="card">
-                    <h3>Brokerage Technology</h3>
-                    <p>Complete technology infrastructure for modern brokerage businesses.</p>
-                    <ul>
-                        <li>CRM & Client Portal</li>
-                        <li>Trading Platform Integration</li>
-                        <li>IB & Affiliate Management</li>
-                        <li>MAM/PAMM & Trade Copier</li>
-                        <li>Reporting & Administration</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>FinTech Infrastructure</h3>
-                    <p>Technology infrastructure that connects financial businesses with their digital ecosystem.</p>
-                    <ul>
-                        <li>APIs & Payment Integrations</li>
-                        <li>KYC Integrations</li>
-                        <li>Data Services</li>
-                        <li>Cloud Infrastructure</li>
-                        <li>Automation</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Risk Technology</h3>
-                    <p>Technology for monitoring trading activity and business exposure.</p>
-                    <ul>
-                        <li>Exposure Monitoring</li>
-                        <li>Risk Dashboard</li>
-                        <li>Margin & Trading Analytics</li>
-                        <li>Alerts & Reporting</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Enterprise Software</h3>
-                    <p>Custom technology for businesses with complex operational requirements.</p>
-                    <ul>
-                        <li>Web & Mobile Applications</li>
-                        <li>SaaS Platforms & Custom CRM</li>
-                        <li>API Development</li>
-                        <li>AI Solutions & Automation</li>
-                    </ul>
-                </div>
+            <div class="form-group">
+                <label>Corporate Email</label>
+                <input type="email" name="email" required placeholder="john@institution.com">
             </div>
-        </div>
+            <div class="form-group">
+                <label>Requirement / Message</label>
+                <textarea name="message" rows="4" required placeholder="Specify your platform requirements..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
     </section>
 
-    <!-- 4. PRODUCTS -->
-    <section id="products">
-        <div class="section-header">
-            <h2>Our Products</h2>
-        </div>
-        <div class="grid-3">
-            <div class="card">
-                <h3>FINKIT BrokerOS</h3>
-                <p>One Centralized Platform for Modern Brokerages to manage clients, trading accounts, operations, integrations and analytics.</p>
-            </div>
-            <div class="card">
-                <h3>FINKIT CRM</h3>
-                <p>Client Management, Simplified. Manage leads, clients, KYC, trading accounts, IBs, transactions and support in one place.</p>
-            </div>
-            <div class="card">
-                <h3>FINKIT TRADE</h3>
-                <p>Connect Trading Technology. Integrate trading platforms and financial technology through a unified technology layer.</p>
-            </div>
-            <div class="card">
-                <h3>FINKIT RISK</h3>
-                <p>See Risk. Understand Exposure. Act Faster. Real-time analytics and monitoring designed to understand trading exposure.</p>
-            </div>
-            <div class="card">
-                <h3>FINKIT CONNECT</h3>
-                <p>Connect Your Financial Ecosystem. Robust APIs and integrations connecting platforms, services and business systems.</p>
-            </div>
-            <div class="card">
-                <h3>FINKIT AI</h3>
-                <p>Intelligence for Modern Finance. AI-powered automation, analytics and intelligence to improve decision-making.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. WHY FINKIT & 6. TECHNOLOGY -->
-    <section style="background: #0f172a; color: white; max-width: 100%; padding: 80px 8%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div class="section-header">
-                <h2 style="color: white;">Why Finkit?</h2>
-                <p style="color: #94a3b8;">One Technology Partner. Multiple Possibilities.</p>
-            </div>
-            <div class="grid-3" style="margin-bottom: 60px;">
-                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px;">
-                    <h4 style="color: #38bdf8; margin-bottom: 8px;">Scalable & Secure</h4>
-                    <p style="color: #cbd5e1; font-size: 14px;">Technology designed to grow with your business featuring security-focused architecture.</p>
-                </div>
-                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px;">
-                    <h4 style="color: #38bdf8; margin-bottom: 8px;">Connected & Intelligent</h4>
-                    <p style="color: #cbd5e1; font-size: 14px;">Seamlessly integrates with your existing ecosystem with analytics built into modern workflows.</p>
-                </div>
-                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px;">
-                    <h4 style="color: #38bdf8; margin-bottom: 8px;">Custom & Global</h4>
-                    <p style="color: #cbd5e1; font-size: 14px;">Adapted to your requirements and built with international digital operations in mind.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. INDUSTRIES WE SERVE -->
-    <section>
-        <div class="section-header">
-            <h2>Industries We Serve</h2>
-            <p>Technology for Financial Businesses</p>
-        </div>
-        <div class="hero-tags" style="margin-bottom: 30px;">
-            <span class="hero-tag" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; padding: 10px 20px; font-size: 15px;">Brokerage Businesses</span>
-            <span class="hero-tag" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; padding: 10px 20px; font-size: 15px;">FinTech Companies</span>
-            <span class="hero-tag" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; padding: 10px 20px; font-size: 15px;">Prop Trading Businesses</span>
-            <span class="hero-tag" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; padding: 10px 20px; font-size: 15px;">Trading Technology Companies</span>
-            <span class="hero-tag" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; padding: 10px 20px; font-size: 15px;">Enterprise Businesses</span>
-        </div>
-    </section>
-
-    <!-- 8. CUSTOM DEVELOPMENT -->
-    <section style="background: #f1f5f9; max-width: 100%; padding: 60px 8%; text-align: center;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="color: #0f172a; margin-bottom: 15px;">Have a Different Requirement?</h2>
-            <p style="color: #475569; margin-bottom: 25px;">Finkit Global develops custom software, APIs, dashboards, mobile applications and automation systems tailored to specific operational needs.</p>
-            <a href="#contact" class="btn-primary">Start a Project</a>
-        </div>
-    </section>
-
-    <!-- 9. ABOUT FOUNDER -->
-    <section id="founder">
-        <div class="founder">
-            <div class="founder-info">
-                <h3>ARSHAD ALI</h3>
-                <span class="role">Founder & CEO — Finkit Global</span>
-                <p style="color: #475569;">Arshad Ali is the Founder & CEO of Finkit Global Private Limited, with experience in financial markets, trading and digital business.</p>
-                <p style="color: #475569; margin-top: 10px;">His vision is to build a technology company that combines financial-market understanding with modern software and infrastructure.</p>
-                <div class="founder-quote">
-                    “Our goal is not just to build software. Our goal is to build the infrastructure that powers the next generation of financial businesses.”
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. COMPANY ADDRESS & CONTACT -->
-    <section id="contact" style="background: #f8fafc;">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>Corporate Office</h3>
-                
-                <div class="info-item">
-                    <label>Company Name</label>
-                    <p style="font-weight: 600;">FINKIT GLOBAL PRIVATE LIMITED</p>
-                </div>
-
-                <div class="info-item">
-                    <label>Address</label>
-                    <p>Near KFC, Sarsawa Toll Plaza<br>Saharanpur, Uttar Pradesh, India</p>
-                </div>
-
-                <div class="info-item">
-                    <label>Email & Web</label>
-                    <p>info@finkitglobal.com<br>www.finkitglobal.com</p>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3 style="margin-bottom: 20px; color: #0f172a;">Talk to Our Team</h3>
-                <form action="/send-email" method="POST">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" name="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" placeholder="john@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Requirement / Message</label>
-                        <textarea name="message" rows="4" placeholder="Tell us about your requirement..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Submit Request</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 FINKIT GLOBAL PRIVATE LIMITED. All Rights Reserved.</p>
-        <p class="disclaimer">Note: Finkit Global provides technology and infrastructure services. Regulated financial activities remain subject to applicable laws, licenses and regulatory requirements.</p>
+        <p>&copy; 2026 FinKit Global. All rights reserved.</p>
     </footer>
 
 </body>
