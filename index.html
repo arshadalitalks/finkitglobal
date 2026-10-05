@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
+<head><style>
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-icon {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-name {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.globe-icon {
+    font-size: 20px;
+    margin: 0 2px;
+}
+
+.company-tagline {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINKIT GLOBAL — Technology That Powers Finance</title>
@@ -113,10 +148,16 @@
             background: #00f2fe;
         }
     </style>
-</head>
+</head 
 <body class="antialiased selection:bg-accent-cyan selection:text-navy-900">
 
-    <!-- Navigation Header -->
+    <!-- Navigation Header --><a href="/" class="logo-container">
+    <img src="path/to/your/new-logo.png" alt="Finkit Global Logo" class="logo-icon">
+    <div class="logo-text">
+        <span class="company-name">FINKIT GL<span class="globe-icon">🌐</span>BAL</span>
+        <span class="company-tagline">TECH POWERS FINANCE</span>
+    </div>
+</a>
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo -->
