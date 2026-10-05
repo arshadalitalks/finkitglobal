@@ -477,15 +477,14 @@
                     <div>
                         <div class="text-xs font-bold text-accent-cyan uppercase tracking-wider mb-2">Core Operating Platform</div>
                         <h3 class="font-heading text-2xl font-extrabold text-white mb-2">FINKIT BrokerOS</h3>
-                        <p class="text-accent-teal text-sm font-semibold mb-4">One Technology Platform for Modern Brokerages</p>
+                        <p class="text-accent-teal >One Technology Platform for Modern Brokerages</p>
                         <p class="text-gray-300 text-sm leading-relaxed mb-6">
                             A centralized technology ecosystem designed to manage clients, trading accounts, operations, integrations and analytics.
                         </p>
                     </div>
                     <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
                         <span class="text-xs text-gray-400 font-medium">Enterprise Grade</span>
-                        <a href="#contact" class="text-xs font-bold text-accent-cyan hover:underline flex items-center gap-1">Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-                    </div>
+                        <button onclick="openModal('brokeros-modal')" class="text-xs font-bold text-accent-cyan hover:underline flex items-center gap-1">Learn More &gt;</button>
                 </div>
 
                 <!-- Product 2: FINKIT CRM -->
@@ -986,7 +985,22 @@
         </div>
     </footer>
 
-    <!-- Success Modal -->
+   <!-- FINKIT BrokerOS Modal -->
+<div id="brokeros-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
+    <div class="bg-navy-900 border border-gray-800 rounded-2xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
+        <button onclick="closeModal('brokeros-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>
+        <span class="text-xs text-accent-cyan font-bold uppercase tracking-wider">Core Operating Platform</span>
+        <h2 class="text-2xl font-bold text-white mt-1 mb-4">FINKIT BrokerOS</h2>
+        <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
+            <p>FINKIT BrokerOS is a comprehensive technology ecosystem for modern brokerages.</p>
+            <ul class="list-disc list-inside space-y-1 text-gray-400">
+                <li><strong>Client Onboarding & CRM:</strong> Complete KYC and account workflow.</li>
+                <li><strong>Trading Engine:</strong> Multi-asset execution and real-time risk control.</li>
+                <li><strong>Back-Office Automation:</strong> Automated clearing and settlement systems.</li>
+            </ul>
+        </div>
+    </div>
+</div> <!-- Success Modal -->
     <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy-900/80 backdrop-blur-md p-4">
         <div class="p-8 rounded-3xl glass-card border border-accent-cyan max-w-md w-full text-center space-y-4">
             <div class="w-16 h-16 rounded-full bg-cyan-500/20 text-accent-cyan flex items-center justify-center text-3xl mx-auto">
