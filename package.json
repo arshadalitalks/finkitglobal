@@ -1,12 +1,13 @@
 {
   "name": "finkitglobal",
   "version": "1.0.0",
-  "description": "FinKit Global Website",
+  "description": "FinKit Global Full Stack Website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.7"
   }
 }
