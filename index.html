@@ -1,41 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head><style>
-.logo-container {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-}
-
-.logo-icon {
-    width: 50px;
-    height: auto;
-    margin-right: 15px;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.company-name {
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
-
-.globe-icon {
-    font-size: 20px;
-    margin: 0 2px;
-}
-
-.company-tagline {
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-</style>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINKIT GLOBAL — Technology That Powers Finance</title>
@@ -148,16 +113,23 @@
             background: #00f2fe;
         }
     </style>
-</head 
+</head>
 <body class="antialiased selection:bg-accent-cyan selection:text-navy-900">
 
-    <!-- Navigation Header --><a href="/" class="logo-container">
-    <img src="path/to/your/new-logo.png" alt="Finkit Global Logo" class="logo-icon">
-    <div class="logo-text">
-        <span class="company-name">FINKIT GLOBAL<span class="globe-icon">🌐</span>BAL</span>
-        <span class="company-tagline">TECH POWERS FINANCE</span>
-    </div>
-</a>
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-accent flex items-center justify-center font-heading font-extrabold text-navy-900 text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    FK
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading font-bold text-xl tracking-wider text-white group-hover:text-accent-cyan transition-colors">FINKIT <span class="text-accent-cyan">GLOBAL</span></span>
+                    <span class="text-[9px] uppercase tracking-widest text-gray-400 font-semibold -mt-1">Tech Powers Finance</span>
+                </div>
+            </a>
+
             <!-- Desktop Nav Links -->
             <nav class="hidden lg:flex items-center gap-8">
                 <a href="#home" class="text-sm font-medium text-gray-300 hover:text-accent-cyan transition-colors">Home</a>
@@ -177,14 +149,16 @@
                 <a href="#contact" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-navy-900 bg-gradient-accent hover:opacity-90 shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02]">
                     Talk to Our Team
                 </a>
-            </div>  
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
             <button id="mobile-menu-btn" class="lg:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
                 <i class="fa-solid fa-bars text-2xl"></i>
             </button>
         </div>
 
-            <!-- Mobile Nav Menu -->
-           <div id="mobile-menu" class="hidden lg:hidden bg-navy-800 border-b border-gray-800 px-6 py-6 space-y-4">
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-800 border-b border-gray-800 px-6 py-6 space-y-4">
             <a href="#home" class="block text-gray-300 hover:text-accent-cyan font-medium py-1">Home</a>
             <a href="#about" class="block text-gray-300 hover:text-accent-cyan font-medium py-1">About Us</a>
             <a href="#solutions" class="block text-gray-300 hover:text-accent-cyan font-medium py-1">Solutions</a>
@@ -199,8 +173,8 @@
         </div>
     </header>
 
-       <!-- SECTION 1: HERO SECTION -->
-       <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
         <!-- Ambient Radial Background Glows -->
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -224,7 +198,19 @@
             <p class="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 font-normal leading-relaxed mb-10">
                 Finkit Global builds intelligent technology, software and infrastructure for modern financial businesses.
             </p>
-            <!-- Buttons --
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#solutions" class="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-bold text-navy-900 bg-gradient-accent hover:shadow-lg hover:shadow-cyan-500/25 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                    <span>Explore Solutions</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-bold text-white glass-card hover:bg-navy-700/80 border border-gray-700 hover:border-accent-cyan transition-all flex items-center justify-center gap-2">
+                    <span>Talk to Our Team</span>
+                    <i class="fa-solid fa-comments text-sm text-accent-cyan"></i>
+                </a>
+            </div>
+
             <!-- What We Build Pills/Grid -->
             <div class="pt-8 border-t border-gray-800/80">
                 <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">What We Build</p>
@@ -444,39 +430,39 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-            <!-- Product 1: FINKIT BrokerOS -->
-        <div class="p-8 rounded-3xl glass-card border border-gray-800 hover:border-accent-cyan/50 transition-all flex flex-col justify-between relative">
-            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-accent"></div>
-            <div>
-                <div class="text-xs font-bold text-accent-cyan uppercase tracking-wider mb-2">Core Operating Platform</div>
-                <h3 class="font-heading text-2xl font-extrabold text-white mb-2">FINKIT BrokerOS</h3>
-                <p class="text-accent-teal text-sm font-semibold mb-4">One Technology Platform for Modern Brokerages</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                    A centralized technology ecosystem designed to manage clients, trading accounts, operations, integrations and analytics.
-                </p>
-            </div>
-            <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
-                <span class="text-xs text-gray-400 font-medium">Enterprise Grade</span>
-                <button onclick="openBrokerosModal()" class="text-xs font-bold text-accent-cyan hover:underline flex items-center gap-1">Learn More &gt;</button>
-            </div>
-        </div>
-        
-        <!-- Product 2: FINKIT CRM -->
-        <div class="p-8 rounded-3xl glass-card border border-gray-800 hover:border-accent-cyan/50 transition-all flex flex-col justify-between relative">
-            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-accent"></div>
-            <div>
-                <div class="text-xs font-bold text-accent-cyan uppercase tracking-wider mb-2">Client Relationship Suite</div>
-                <h3 class="font-heading text-2xl font-extrabold text-white mb-2">FINKIT CRM</h3>
-                <p class="text-accent-teal text-sm font-semibold mb-4">Client Management, Simplified.</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                    Manage leads, clients, KYC, trading accounts, IBs, transactions and support from one centralized platform.
-                </p>
-            </div>
-            <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
-                <span class="text-xs text-gray-400 font-medium">Automation Driven</span>
-                <a href="#contact" class="text-xs font-bold text-accent-cyan hover:underline flex items-center gap-1">Learn More &gt;</a>
-            </div>
-        </div>
+                <!-- Product 1: FINKIT BrokerOS -->
+                <div class="p-8 rounded-3xl glass-card border border-gray-800 hover:border-accent-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-accent"></div>
+                    <div>
+                        <div class="text-xs font-bold text-accent-cyan uppercase tracking-wider mb-2">Core Operating Platform</div>
+                        <h3 class="font-heading text-2xl font-extrabold text-white mb-2">FINKIT BrokerOS</h3>
+                        <p class="text-accent-teal text-sm font-semibold mb-4">One Technology Platform for Modern Brokerages</p>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            A centralized technology ecosystem designed to manage clients, trading accounts, operations, integrations and analytics.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
+                        <span class="text-xs text-gray-400 font-medium">Enterprise Grade</span>
+                        <a href="#contact" class="text-xs font-bold text-accent-cyan hover:underline flex items-center gap-1">Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 2: FINKIT CRM -->
+                <div class="p-8 rounded-3xl glass-card border border-gray-800 hover:border-accent-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-accent"></div>
+                    <div>
+                        <div class="text-xs font-bold text-accent-cyan uppercase tracking-wider mb-2">Client Relationship Suite</div>
+                        <h3 class="font-heading text-2xl font-extrabold text-white mb-2">FINKIT CRM</h3>
+                        <p class="text-accent-teal text-sm font-semibold mb-4">Client Management, Simplified.</p>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Manage leads, clients, KYC, trading accounts, IBs, transactions and support from one centralized platform.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
+                        <span class="text-xs text-gray-400 font-medium">Automation Driven</span>
+                        <a href="#contact" class="text-xs font-bold text-accent-cyan hover:underline flex items-center gap-1">Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                    </div>
+                </div>
 
                 <!-- Product 3: FINKIT TRADE -->
                 <div class="p-8 rounded-3xl glass-card border border-gray-800 hover:border-accent-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
@@ -806,7 +792,7 @@
                     <div class="lg:col-span-4 flex flex-col items-center text-center">
                         <div class="w-40 h-40 rounded-3xl bg-gradient-accent p-1 shadow-2xl shadow-cyan-500/20 mb-6">
                             <div class="w-full h-full rounded-[22px] bg-navy-900 flex items-center justify-center">
-                                <img src="ac6ee187-32a2-40e1-b42d-5423ff12926b.jpeg" alt="Arshad Ali" class="=w-full h-full object-cover rounded-[22px]">
+                                <i class="fa-solid fa-user-tie text-6xl text-accent-cyan"></i>
                             </div>
                         </div>
                         <h3 class="font-heading text-2xl font-extrabold text-white">ARSHAD ALI</h3>
@@ -959,22 +945,7 @@
         </div>
     </footer>
 
-   <!-- FINKIT BrokerOS Modal -->
-<div id="brokeros-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
-    <div class="bg-navy-900 border border-gray-800 rounded-2xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
-        <button onclick="closeModal('brokeros-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>
-        <span class="text-xs text-accent-cyan font-bold uppercase tracking-wider">Core Operating Platform</span>
-        <h2 class="text-2xl font-bold text-white mt-1 mb-4">FINKIT BrokerOS</h2>
-        <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
-            <p>FINKIT BrokerOS is a comprehensive technology ecosystem for modern brokerages.</p>
-            <ul class="list-disc list-inside space-y-1 text-gray-400">
-                <li><strong>Client Onboarding & CRM:</strong> Complete KYC and account workflow.</li>
-                <li><strong>Trading Engine:</strong> Multi-asset execution and real-time risk control.</li>
-                <li><strong>Back-Office Automation:</strong> Automated clearing and settlement systems.</li>
-            </ul>
-        </div>
-    </div>
-</div> <!-- Success Modal -->
+    <!-- Success Modal -->
     <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy-900/80 backdrop-blur-md p-4">
         <div class="p-8 rounded-3xl glass-card border border-accent-cyan max-w-md w-full text-center space-y-4">
             <div class="w-16 h-16 rounded-full bg-cyan-500/20 text-accent-cyan flex items-center justify-center text-3xl mx-auto">
@@ -1022,36 +993,5 @@
             modal.classList.remove('flex');
         }
     </script>
-    // BrokerOS Modal Functions
-function openBrokerosModal() {
-    const modal = document.getElementById('brokeros-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-
-function closeBrokerosModal() {
-    const modal = document.getElementById('brokeros-modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-   <!-- FINKIT BrokerOS Modal -->
-<div id="brokeros-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
-    <div class="bg-navy-900 border border-gray-800 rounded-2xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
-        <button onclick="closeBrokerosModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
-        <span class="text-xs text-accent-cyan font-bold uppercase tracking-wider">Core Operating Platform</span>
-        <h2 class="text-2xl font-bold text-white mt-1 mb-4">FINKIT BrokerOS Details</h2>
-        <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
-            <p><strong>FINKIT BrokerOS</strong> is a comprehensive technology ecosystem for modern brokerages.</p>
-            <ul class="list-disc list-inside space-y-1 text-gray-400">
-                <li><strong>Client Onboarding & CRM:</strong> Complete KYC and account workflow.</li>
-                <li><strong>Trading Engine:</strong> Multi-asset execution and real-time risk control.</li>
-                <li><strong>Back-Office Automation:</strong> Automated clearing and settlement systems.</li>
-            </ul>
-        </div>
-        <div class="mt-6 text-right">
-            <button onclick="closeBrokerosModal()" class="bg-accent-cyan text-navy-900 font-bold px-4 py-2 rounded-xl text-xs">Close</button>
-        </div>
-    </div>
-</div>
 </body>
 </html>
