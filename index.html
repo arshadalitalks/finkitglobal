@@ -34,7 +34,6 @@
             font-size: 24px;
             font-weight: 700;
             color: #38bdf8;
-            letter-spacing: 0.5px;
         }
         nav .logo span { color: #ffffff; }
         nav ul {
@@ -61,20 +60,21 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 100px 8% 120px;
+            padding: 120px 8%;
             text-align: center;
         }
         .hero h1 {
-            font-size: 48px;
+            font-size: 46px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #f8fafc;
         }
         .hero p {
             font-size: 18px;
-            color: #94a3b8;
+            color: #cbd5e1;
             max-width: 650px;
             margin: 0 auto 35px;
         }
@@ -87,66 +87,139 @@
             font-size: 16px;
             font-weight: 600;
             display: inline-block;
-            transition: 0.3s;
         }
-        .hero .btn-hero:hover { background: #1d4ed8; }
 
-        /* Features/Services */
-        .services {
+        /* About Section with Photo */
+        .about {
             padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
             max-width: 1200px;
-            margin: -50px auto 0;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+        .about-img img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        .about-content h2 {
+            font-size: 32px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+        .about-content p {
+            color: #475569;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Services Grid */
+        .services {
+            background: #f1f5f9;
+            padding: 80px 8%;
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .services-header h2 {
+            font-size: 32px;
+            color: #0f172a;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .card {
             background: white;
-            padding: 35px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
-            transition: 0.3s;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
-        .card h3 {
+        .card-body {
+            padding: 25px;
+        }
+        .card-body h3 {
             font-size: 20px;
             color: #0f172a;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-        .card p {
+        .card-body p {
             color: #64748b;
             font-size: 15px;
         }
 
-        /* Contact Section */
-        .contact {
-            background: #ffffff;
+        /* Contact & Address Section */
+        .contact-section {
             padding: 80px 8%;
-            border-top: 1px solid #e2e8f0;
-        }
-        .contact-container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
-        .contact h2 {
-            font-size: 32px;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .contact-info {
+            background: #0f172a;
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+        .contact-info h2 {
+            font-size: 28px;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            margin-bottom: 20px;
+        }
+        .info-item h4 {
+            font-size: 14px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .info-item p {
+            font-size: 16px;
+            color: #f8fafc;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .contact-form h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
             color: #0f172a;
-            margin-bottom: 10px;
-        }
-        .contact p {
-            color: #64748b;
-            margin-bottom: 30px;
         }
         .form-group {
             margin-bottom: 18px;
-            text-align: left;
         }
         .form-group label {
             display: block;
@@ -161,14 +234,10 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             font-size: 15px;
-            outline: none;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: #2563eb;
         }
         .btn-submit {
             width: 100%;
-            background: #0f172a;
+            background: #2563eb;
             color: white;
             padding: 14px;
             border: none;
@@ -176,9 +245,7 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
         }
-        .btn-submit:hover { background: #1e293b; }
 
         /* Footer */
         footer {
@@ -187,66 +254,125 @@
             text-align: center;
             padding: 25px;
             font-size: 14px;
+            border-top: 1px solid #1e293b;
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <div class="logo">FinKit<span>Global</span></div>
         <ul>
-            <li><a href="#about">About</a></li>
+            <li><a href="#about">About Us</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="#contact" class="btn-nav">Get Started</a>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Smart Financial Solutions for Modern Growth</h1>
-        <p>FinKit Global provides expert financial advisory, wealth management, and strategic corporate solutions tailored to your goals.</p>
-        <a href="#contact" class="btn-hero">Consult With Us</a>
+        <h1>Empowering Your Global Financial Future</h1>
+        <p>Comprehensive advisory, corporate growth solutions, and wealth management tailored for modern individuals and enterprises.</p>
+        <a href="#contact" class="btn-hero">Get Free Consultation</a>
     </section>
 
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" alt="FinKit Team">
+        </div>
+        <div class="about-content">
+            <h2>About FinKit Global</h2>
+            <p>At FinKit Global, we combine financial expertise with technological innovation to help businesses and individuals navigate complex markets.</p>
+            <p>Our dedicated team provides custom-tailored solutions designed to minimize risk, maximize return on investment, and accelerate sustainable growth globally.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
     <section class="services" id="services">
+        <div class="services-header">
+            <h2>Our Core Expertise</h2>
+        </div>
         <div class="grid">
             <div class="card">
-                <h3>Wealth Management</h3>
-                <p>Tailored investment strategies designed to preserve and grow your personal and business assets safely.</p>
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Wealth Management">
+                <div class="card-body">
+                    <h3>Wealth Management</h3>
+                    <p>Strategic portfolio planning and asset allocation designed to protect and build long-term wealth.</p>
+                </div>
             </div>
             <div class="card">
-                <h3>Corporate Advisory</h3>
-                <p>Strategic insights, risk analysis, and financial planning to help companies scale globally.</p>
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Corporate Advisory">
+                <div class="card-body">
+                    <h3>Corporate Advisory</h3>
+                    <p>Expert business consulting, M&A support, and capital structuring for expanding businesses.</p>
+                </div>
             </div>
             <div class="card">
-                <h3>Global Planning</h3>
-                <p>Cross-border financial structuring, tax optimization, and compliance solutions for international growth.</p>
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="Global Tax Solutions">
+                <div class="card-body">
+                    <h3>Global Tax & Planning</h3>
+                    <p>Cross-border financial strategy, compliance management, and tax-efficient planning.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <h2>Get In Touch</h2>
-            <p>Fill out the form below and our team will get back to you within 24 hours.</p>
-            <form action="/send-email" method="POST">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" name="name" placeholder="John Doe" required>
+    <!-- Contact & Address Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-grid">
+            
+            <!-- Address & Info Box -->
+            <div class="contact-info">
+                <h2>Our Office Address</h2>
+                
+                <div class="info-item">
+                    <h4>Headquarters Address</h4>
+                    <p>FinKit Global Tower, Financial District,<br>New Delhi, India - 110001</p>
                 </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" name="email" placeholder="john@example.com" required>
+
+                <div class="info-item">
+                    <h4>Phone Number</h4>
+                    <p>+91 (11) 4567-8900 / +91 98765 43210</p>
                 </div>
-                <div class="form-group">
-                    <label>Message / Requirement</label>
-                    <textarea name="message" rows="4" placeholder="Tell us about your financial requirements..." required></textarea>
+
+                <div class="info-item">
+                    <h4>Email Address</h4>
+                    <p>finkitglobal@gmail.com / support@finkitglobal.com</p>
                 </div>
-                <button type="submit" class="btn-submit">Submit Request</button>
-            </form>
+
+                <div class="info-item">
+                    <h4>Working Hours</h4>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday & Sunday: Closed</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form action="/send-email" method="POST">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message / Query</label>
+                        <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </form>
+            </div>
+
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         &copy; 2026 FinKit Global. All Rights Reserved.
     </footer>
