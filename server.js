@@ -1,66 +1,74 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const LEADS_FILE = path.join(__dirname, 'leads.json');
 
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
-function getLeads() {
-    try {
-        if (!fs.existsSync(LEADS_FILE)) {
-            fs.writeFileSync(LEADS_FILE, JSON.stringify([], null, 2));
-        }
-        const data = fs.readFileSync(LEADS_FILE, 'utf8');
-        return JSON.parse(data || '[]');
-    } catch (err) {
-        return [];
-    }
-}
+// Memory storage for leads
+let leads = [];
 
-function saveLeads(leads) {
-    try {
-        fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
-    } catch (err) {
-        console.error('Error saving leads:', err);
-    }
-}
-
+// Serve Admin page
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
+// API endpoint for Admin Dashboard to fetch leads
 app.get('/api/leads', (req, res) => {
-    res.json(getLeads());
+    res.json(leads);
 });
 
-app.post('/send-email', (req, res) => {
-    try {
-        const { name, email, message } = req.body;
+// Handle Contact Form Submission
+app.post('/send-email', async (req, res) => {
+    const { name, email, message } = req.body;
 
-        const newLead = {
-            id: Date.now(),
-            name: name || 'N/A',
-            email: email || 'N/A',
-            message: message || 'N/A',
-            date: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-            status: 'New'
-        };
+    const newLead = {
+        id: Date.now(),
+        name: name || 'N/A',
+        email: email || 'N/A',
+        message: message || 'N/A',
+        date: new Date().toLocaleString(),
+        status: 'New'
+    };
 
-        const leads = getLeads();
-        leads.unshift(newLead);
-        saveLeads(leads);
+    // Lead ko array me top par save karein
+    leads.unshift(newLead);
+    console.log('New Lead Received:', newLead);
 
-        console.log('✅ Naya Lead Saved:', newLead);
+    // Agar email config hai toh email bhejein, varna crash na hone dein
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+        try {
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS
+                }
+            });
 
-        return res.status(200).json({ success: true, message: 'Lead added successfully!' });
-    } catch (error) {
-        return res.status(500).json({ success: false, error: error.message });
+            await transporter.sendMail({
+                from: process.env.EMAIL_USER,
+                to: process.env.EMAIL_USER,
+                subject: `New Lead: ${name}`,
+                text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+            });
+        } catch (err) {
+            console.log('Email send failed, but lead saved:', err.message);
+        }
     }
+
+    // Response send karein
+    res.send(`
+        <script>
+            alert('Inquiry submitted successfully!');
+            window.location.href = '/';
+        </script>
+    `);
 });
 
 app.listen(PORT, () => {
